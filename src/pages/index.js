@@ -15,7 +15,7 @@ const IndexPage = ({ data }) => {
       <ul>
         {
           data.characters.nodes.map(node => (
-            <li key={node.id}>{node.name}</li>
+            <li key={node.id}>Character: {node.name}</li>
           ))
         }
       </ul>
