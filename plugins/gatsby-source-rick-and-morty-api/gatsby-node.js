@@ -11,18 +11,20 @@ const fetchAllCharacters = (response = {}, characters = []) => {
   return characters
 }
 
-exports.sourceNodes = async function sourceNodes({ cache, actions, createNodeId, createContentDigest }, options) {
+exports.sourceNodes = async function sourceNodes({ cache, actions, createNodeId, createContentDigest, reporter }, options) {
   const CACHE_KEY = `characters`
   let existing = await cache.get(CACHE_KEY)
 
   if (!existing) {
-    console.log('Characters was not cached. Fetching new characters')
+    reporter.info('Characters was not cached. Fetching new characters')
 
     const characters = await fetchAllCharacters()
 
     existing = characters
 
     await cache.set(CACHE_KEY, characters)
+  } else {
+    reporter.info('Characters was cached. Moving on!')
   }
 
   for (let i = 0; i < existing.length; i++) {
