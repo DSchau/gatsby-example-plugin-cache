@@ -3,5 +3,7 @@ module.exports = {
     title: `plugin-caching`,
     siteUrl: `https://www.yourdomain.tld`,
   },
-  plugins: [],
+  plugins: [
+    'gatsby-source-rick-and-morty-api'
+  ],
 }
